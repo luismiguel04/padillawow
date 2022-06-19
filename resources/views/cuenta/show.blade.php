@@ -11,22 +11,22 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">Show Cuenta</span>
+                            <span class="card-title">Mostrando Cuenta</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('cuentas.index') }}"> Back</a>
+                            <a class="btn btn-primary" href="{{ route('cuentas.index') }}">Regresar</a>
                         </div>
                     </div>
 
                     <div class="card-body">
                         
                         <div class="form-group">
-                            <strong>User Id:</strong>
-                            {{ $cuenta->user_id }}
+                            <strong>Usuario:</strong>
+                            {{ $cuenta->user->name}}
                         </div>
                         <div class="form-group">
-                            <strong>Provedor Id:</strong>
-                            {{ $cuenta->provedor_id }}
+                            <strong>Provedor:</strong>
+                            {{ $cuenta->provedor->nombre}}
                         </div>
                         <div class="form-group">
                             <strong>Banco:</strong>
@@ -37,7 +37,7 @@
                             {{ $cuenta->sucursal }}
                         </div>
                         <div class="form-group">
-                            <strong>Direccion:</strong>
+                            <strong>Dirección:</strong>
                             {{ $cuenta->direccion }}
                         </div>
                         <div class="form-group">

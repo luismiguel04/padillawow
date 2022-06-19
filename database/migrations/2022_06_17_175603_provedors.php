@@ -17,10 +17,11 @@ return new class extends Migration
           Schema::create('provedors', function (Blueprint $table) {
             $table->engine="InnoDB";
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->unsigned();
             $table->string('nombre',120);
             $table->string('direccion',1000);
             $table->tinyInteger('status');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete("cascade");
             $table->timestamps();
         });
     }

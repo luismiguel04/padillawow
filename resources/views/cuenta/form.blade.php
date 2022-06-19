@@ -2,7 +2,7 @@
     <div class="box-body">
         
         <div class="form-group">
-            {{ Form::label('user_id') }}
+            {{ Form::label('usuario') }}
             {{ Form::text('user_id', $cuenta->user_id, ['class' => 'form-control' . ($errors->has('user_id') ? ' is-invalid' : ''), 'placeholder' => 'User Id']) }}
             {!! $errors->first('user_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
@@ -12,9 +12,9 @@
             {!! $errors->first('provedor_id', '<div class="invalid-feedback">:message</div>') !!}
         </div> -->
         <div class="form-group">
-            {{ Form::label('provedor_id') }}
-            {{ Form::select('provedor_id', $provedores ,$cuenta->provedor_id, ['class' => 'form-control' . ($errors->has('provedor_id') ? ' is-invalid' : ''), 'placeholder' => 'Provedor Id']) }}
-            {!! $errors->first('provedor_id', '<div class="invalid-feedback">:message</div>') !!}
+            {{ Form::label('provedor') }}
+            {{ Form::select('provedor_id', $provedores ,$cuenta->provedor_id, ['class' => 'form-control' . ($errors->has('provedor_id') ? ' is-invalid' : ''), 'placeholder' => 'seleccione un provedor']) }}
+            {!! $errors->first('seleccione un provedor', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
             {{ Form::label('banco') }}
@@ -69,6 +69,6 @@
 
     </div>
     <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
     </div>
 </div>

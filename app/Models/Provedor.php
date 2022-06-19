@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class Provedor
@@ -24,10 +25,10 @@ class Provedor extends Model
 {
     
     static $rules = [
-		'user_id' => 'required',
+		
 		'nombre' => 'required',
 		'direccion' => 'required',
-		'status' => 'required',
+		
     ];
 
     protected $perPage = 20;
@@ -55,6 +56,8 @@ class Provedor extends Model
     {
         return $this->hasMany('App\Models\Pago', 'provedor_id', 'id');
     }
-    
+    public function user(){
+        return $this->belongsTo('App\Models\User','user_id');
+    }
 
 }

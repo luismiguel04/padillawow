@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Provedor;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 /**
@@ -31,7 +32,10 @@ class ProvedorController extends Controller
      */
     public function create()
     {
-        $provedor = new Provedor();
+       
+        $provedor= new provedor();
+        $user=\Auth::user();
+        $provedor->user_id = $user->id;
         return view('provedor.create', compact('provedor'));
     }
 
@@ -45,10 +49,18 @@ class ProvedorController extends Controller
     {
         request()->validate(Provedor::$rules);
 
+        
+        $provedor= new provedor();
+        
+      /*   $provedor->nombre =$request->input('nombre');
+        $provedor->direccion =$request->input('direccion'); */
+/* 
+        $provedor ->save(); */
         $provedor = Provedor::create($request->all());
-
         return redirect()->route('provedors.index')
-            ->with('success', 'Provedor created successfully.');
+             ->with(array(
+                'message'=>'El provedor se ha creado correctamente'
+            ));
     }
 
     /**
@@ -91,7 +103,7 @@ class ProvedorController extends Controller
         $provedor->update($request->all());
 
         return redirect()->route('provedors.index')
-            ->with('success', 'Provedor updated successfully');
+            ->with('success', 'Provedor actualizado exitosamente');
     }
 
     /**
@@ -104,6 +116,6 @@ class ProvedorController extends Controller
         $provedor = Provedor::find($id)->delete();
 
         return redirect()->route('provedors.index')
-            ->with('success', 'Provedor deleted successfully');
+            ->with('success', 'Provedor eliminado exitosamente');
     }
 }

@@ -18,7 +18,7 @@
 
                              <div class="float-right">
                                 <a href="{{ route('cuentas.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                                  {{ __('Crear Nuevo') }}
                                 </a>
                               </div>
                         </div>
@@ -36,11 +36,11 @@
                                     <tr>
                                         <th>No</th>
                                         
-										<th>User Id</th>
+										<th>Usuario</th>
 										<th>Provedor</th>
 										<th>Banco</th>
 										<th>Sucursal</th>
-										<th>Direccion</th>
+										<th>Dirección</th>
 										<th>Cuenta</th>
 										<th>Clave</th>
 										<th>Swifts</th>
@@ -57,7 +57,7 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-											<td>{{ $cuenta->user_id }}</td>
+											<td>{{ $cuenta->user->name }}</td>
 											<td>{{ $cuenta->provedor->nombre }}</td>
 											<td>{{ $cuenta->banco }}</td>
 											<td>{{ $cuenta->sucursal }}</td>
@@ -72,11 +72,11 @@
 
                                             <td>
                                                 <form action="{{ route('cuentas.destroy',$cuenta->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('cuentas.show',$cuenta->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('cuentas.edit',$cuenta->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('cuentas.show',$cuenta->id) }}"><i class="fa fa-fw fa-eye"></i> Mostrar</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('cuentas.edit',$cuenta->id) }}"><i class="fa fa-fw fa-edit"></i> Editar</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Elimiar</button>
                                                 </form>
                                             </td>
                                         </tr>

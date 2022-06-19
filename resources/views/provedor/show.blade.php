@@ -11,25 +11,25 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">Show Provedor</span>
+                            <span class="card-title">Mostrando Provedor</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('provedors.index') }}"> Back</a>
+                            <a class="btn btn-primary" href="{{ route('provedors.index') }}"> Regresar</a>
                         </div>
                     </div>
 
                     <div class="card-body">
                         
                         <div class="form-group">
-                            <strong>User Id:</strong>
-                            {{ $provedor->user_id }}
+                            <strong>Usuario:</strong>
+                            {{ $provedor->user->name }}
                         </div>
                         <div class="form-group">
                             <strong>Nombre:</strong>
                             {{ $provedor->nombre }}
                         </div>
                         <div class="form-group">
-                            <strong>Direccion:</strong>
+                            <strong>Dirección:</strong>
                             {{ $provedor->direccion }}
                         </div>
                         <div class="form-group">

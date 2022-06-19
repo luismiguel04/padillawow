@@ -2,13 +2,13 @@
     <div class="box-body">
         
         <div class="form-group">
-            {{ Form::label('user_id') }}
+            {{ Form::label('usuario') }}
             {{ Form::text('user_id', $pago->user_id, ['class' => 'form-control' . ($errors->has('user_id') ? ' is-invalid' : ''), 'placeholder' => 'User Id']) }}
             {!! $errors->first('user_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('provedor_id') }}
-            {{ Form::text('provedor_id', $pago->provedor_id, ['class' => 'form-control' . ($errors->has('provedor_id') ? ' is-invalid' : ''), 'placeholder' => 'Provedor Id']) }}
+            {{ Form::label('provedor') }}
+            {{ Form::select('provedor_id',$provedores, $pago->provedor_id, ['class' => 'form-control' . ($errors->has('provedor_id') ? ' is-invalid' : ''), 'placeholder' => 'Provedor Id']) }}
             {!! $errors->first('provedor_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">

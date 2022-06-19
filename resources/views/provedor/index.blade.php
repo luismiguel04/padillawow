@@ -18,7 +18,7 @@
 
                              <div class="float-right">
                                 <a href="{{ route('provedors.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                                  {{ __('Crear Nuevo') }}
                                 </a>
                               </div>
                         </div>
@@ -34,11 +34,11 @@
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>No</th>
+                                        <th>No Provedor</th>
                                         
-										<th>User Id</th>
+										<th>Usuario</th>
 										<th>Nombre</th>
-										<th>Direccion</th>
+										<th>Dirección</th>
 										<th>Status</th>
 
                                         <th></th>
@@ -49,18 +49,18 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-											<td>{{ $provedor->user_id }}</td>
+											<td>{{ $provedor->user->name }}</td>
 											<td>{{ $provedor->nombre }}</td>
 											<td>{{ $provedor->direccion }}</td>
 											<td>{{ $provedor->status }}</td>
 
                                             <td>
                                                 <form action="{{ route('provedors.destroy',$provedor->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('provedors.show',$provedor->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('provedors.edit',$provedor->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('provedors.show',$provedor->id) }}"><i class="fa fa-fw fa-eye"></i> Mostrar</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('provedors.edit',$provedor->id) }}"><i class="fa fa-fw fa-edit"></i> Editar</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Eliminar</button>
                                                 </form>
                                             </td>
                                         </tr>

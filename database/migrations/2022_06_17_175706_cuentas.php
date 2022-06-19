@@ -17,7 +17,7 @@ return new class extends Migration
             Schema::create('cuentas', function (Blueprint $table) {
             $table->engine="InnoDB";
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->unsigned();
             $table->unsignedBigInteger('provedor_id')->unsigned();
             $table->string('banco',100);
             $table->string('sucursal',100);
@@ -30,6 +30,7 @@ return new class extends Migration
             $table->string('observaciones',100);
             $table->tinyInteger('status');
             $table->foreign('provedor_id')->references('id')->on('provedors')->onDelete("cascade");
+            $table->foreign('user_id')->references('user_id')->on('provedors')->onDelete("cascade");
             $table->timestamps();
         });
     }

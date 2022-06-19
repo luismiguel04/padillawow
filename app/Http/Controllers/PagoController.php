@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pago;
+use App\Models\Cuenta;
+use App\Models\Provedor;
 use Illuminate\Http\Request;
 
 /**
@@ -32,7 +34,10 @@ class PagoController extends Controller
     public function create()
     {
         $pago = new Pago();
-        return view('pago.create', compact('pago'));
+        $user=\Auth::user();
+        $pago->user_id = $user->id;
+        $provedores =Provedor::pluck('nombre','id' );
+        return view('pago.create', compact('pago','provedores'));
     }
 
     /**

@@ -34,6 +34,8 @@ class CuentaController extends Controller
     public function create()
     {
         $cuenta = new Cuenta();
+        $user=\Auth::user();
+        $cuenta->user_id = $user->id;
         $provedores =Provedor::pluck('nombre','id');
         return view('cuenta.create', compact('cuenta','provedores'));
     }
@@ -51,7 +53,7 @@ class CuentaController extends Controller
         $cuenta = Cuenta::create($request->all());
 
         return redirect()->route('cuentas.index')
-            ->with('success', 'Cuenta created successfully.');
+            ->with('success', 'Cuenta creada exitosamente.');
     }
 
     /**
@@ -95,7 +97,7 @@ class CuentaController extends Controller
         $cuenta->update($request->all());
 
         return redirect()->route('cuentas.index')
-            ->with('success', 'Cuenta updated successfully');
+            ->with('success', 'Cuenta actualizada exitosamente');
     }
 
     /**
@@ -108,6 +110,6 @@ class CuentaController extends Controller
         $cuenta = Cuenta::find($id)->delete();
 
         return redirect()->route('cuentas.index')
-            ->with('success', 'Cuenta deleted successfully');
+            ->with('success', 'Cuenta elimiada exitosamente');
     }
 }
