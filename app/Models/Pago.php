@@ -32,22 +32,22 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Pago extends Model
 {
-    
+
     static $rules = [
-		'user_id' => 'required',
-		'provedor_id' => 'required',
-		'cuenta_id' => 'required',
-		'fecha' => 'required',
-		'referencia' => 'required',
-		'cliente' => 'required',
-		'concepto' => 'required',
-		'bl' => 'required',
-		'contenedor' => 'required',
-		'factura' => 'required',
-		'cantidad' => 'required',
-		'moneda' => 'required',
-		'obeservacion' => 'required',
-		'status' => 'required',
+        'user_id' => 'required',
+        'provedor_id' => 'required',
+        'cuenta_id' => 'required',
+        'fecha' => 'required',
+        'referencia' => 'required',
+        'cliente' => 'required',
+        'concepto' => 'required',
+        'bl' => 'required',
+        'contenedor' => 'required',
+        'factura' => 'required',
+        'cantidad' => 'required',
+        'moneda' => 'required',
+        'obeservacion' => 'required',
+        'status' => 'required',
     ];
 
     protected $perPage = 20;
@@ -57,7 +57,7 @@ class Pago extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id','provedor_id','cuenta_id','fecha','referencia','cliente','concepto','bl','contenedor','factura','cantidad','moneda','obeservacion','status'];
+    protected $fillable = ['user_id', 'provedor_id', 'cuenta_id', 'fecha', 'referencia', 'cliente', 'concepto', 'bl', 'contenedor', 'factura', 'cantidad', 'moneda', 'obeservacion', 'status'];
 
 
     /**
@@ -67,7 +67,7 @@ class Pago extends Model
     {
         return $this->hasOne('App\Models\Cuenta', 'id', 'cuenta_id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -75,6 +75,8 @@ class Pago extends Model
     {
         return $this->hasOne('App\Models\Provedor', 'id', 'provedor_id');
     }
-    
-
+    public function user()
+    {
+        return $this->hasOne('App\Models\User', 'id', 'user_id');
+    }
 }

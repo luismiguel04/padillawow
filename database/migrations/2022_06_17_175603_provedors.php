@@ -14,13 +14,13 @@ return new class extends Migration
     public function up()
     {
         //
-          Schema::create('provedors', function (Blueprint $table) {
-            $table->engine="InnoDB";
+        Schema::create('provedors', function (Blueprint $table) {
+            $table->engine = "InnoDB";
             $table->id();
             $table->unsignedBigInteger('user_id')->unsigned();
-            $table->string('nombre',120);
-            $table->string('direccion',1000);
-            $table->tinyInteger("status");
+            $table->string('nombre', 120);
+            $table->string('direccion', 1000);
+            $table->enum("status", ["activo", "inactivo"]);
             $table->foreign('user_id')->references('id')->on('users')->onDelete("cascade");
             $table->timestamps();
         });

@@ -15,21 +15,21 @@ return new class extends Migration
     {
         //
         Schema::create('pagos', function (Blueprint $table) {
-            $table->engine="InnoDB";
+            $table->engine = "InnoDB";
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('provedor_id');
             $table->unsignedBigInteger('cuenta_id');
             $table->date('fecha');
-            $table->string('referencia',20);
-            $table->string('cliente',100);
-            $table->string('concepto',100);
-            $table->string('bl',20);
-            $table->string('contenedor',20);
-            $table->string('factura',15);
-            $table->integer('cantidad');
-            $table->string('moneda',10);
-            $table->string('obeservacion',100);
+            $table->string('referencia', 20);
+            $table->string('cliente', 100);
+            $table->string('concepto', 100);
+            $table->string('bl', 20);
+            $table->string('contenedor', 20);
+            $table->string('factura', 15);
+            $table->double('cantidad', 8, 2);
+            $table->string('moneda', 10);
+            $table->string('obeservacion', 100);
             $table->enum("status", ["pendiente", "pagado"]);
             $table->foreign('provedor_id')->references('id')->on('provedors')->onDelete("cascade");
             $table->foreign('cuenta_id')->references('id')->on('cuentas')->onDelete("cascade");

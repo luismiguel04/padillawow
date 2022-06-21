@@ -1,46 +1,64 @@
 <div class="box box-info padding-1">
     <div class="box-body">
-        
+
         <div class="form-group">
             {{ Form::label('usuario') }}
             {{ Form::text('user_id', $pago->user_id, ['class' => 'form-control' . ($errors->has('user_id') ? ' is-invalid' : ''), 'placeholder' => 'User Id']) }}
             {!! $errors->first('user_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
+        <!--  <div class="form-group">
+            {{ Form::label('provedor') }}
+            {{ Form::select('provedor_id',$provedores, $pago->provedor_id, ['class' => 'form-control' . ($errors->has('provedor_id') ? ' is-invalid' : ''), 'placeholder' => 'seleccione un provedor']) }}
+            {!! $errors->first('provedor_id', '<div class="invalid-feedback">:message</div>') !!}
+        </div> -->
+        <!--     <div class="form-group">
+            {{ Form::label('provedor') }}
+            <select id="provedor_id" name="provedor_id" class="form-control">
+                <option>------Seleccionar------</option>
+
+
+                @foreach( $provedores as $key => $value )
+                <option value="{{ $key }}">{{ $value}}</option>
+                @endforeach
+            </select>
+
+        </div> -->
+
+
+
         <div class="form-group">
             {{ Form::label('provedor') }}
-            {{ Form::select('provedor_id',$provedores, $pago->provedor_id, ['class' => 'form-control' . ($errors->has('provedor_id') ? ' is-invalid' : ''), 'placeholder' => 'Provedor Id']) }}
-            {!! $errors->first('provedor_id', '<div class="invalid-feedback">:message</div>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('cuenta_id') }}
-            {{ Form::text('cuenta_id', $pago->cuenta_id, ['class' => 'form-control' . ($errors->has('cuenta_id') ? ' is-invalid' : ''), 'placeholder' => 'Cuenta Id']) }}
-            {!! $errors->first('cuenta_id', '<div class="invalid-feedback">:message</div>') !!}
-        <br>
-        </div>
-        <div class="form-group">
-        <select name="_categoria" id="_categoria">
-            @foreach ($provedores as $item)
-            <option value="{{$item->id}}">{{$item->nombre}}</option>
-            @endforeach
-        </select>
-      
-          
+            <select name="provedor_id" id="provedor_id" class="form-control">
+
+
+                <option>Seleccionar provedor</option>
+
+                @foreach ($provedores as $item)
+                <option value=" {{$item->id}}">{{$item->nombre}}</option>
+                @endforeach
+
+            </select>
+
+
         </div>
 
         <div class="form-group">
             <br>
-            {{ Form::label('cuenta_id') }}
+            {{ Form::label('cuenta') }}
             <br>
-            <select name="_subcategoria" id="_subcategoria" class=>from-control></select>
+            <select name="cuenta_id" id="cuenta_id" class=>from-control>
+                <option value="4"> {{"selecionar"}}</option>
+
+            </select>
             <br>
             <br>
-          
+
         </div>
 
 
         <div class="form-group">
             {{ Form::label('fecha') }}
-            {{ Form::text('fecha', $pago->fecha, ['class' => 'form-control' . ($errors->has('fecha') ? ' is-invalid' : ''), 'placeholder' => 'Fecha']) }}
+            {{ Form::date('fecha', $pago->fecha, ['class' => 'form-control' . ($errors->has('fecha') ? ' is-invalid' : ''), 'placeholder' => 'Fecha']) }}
             {!! $errors->first('fecha', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
@@ -90,14 +108,23 @@
         </div>
         <div class="form-group">
             {{ Form::label('status') }}
-            {{ Form::text('status', $pago->status, ['class' => 'form-control' . ($errors->has('status') ? ' is-invalid' : ''), 'placeholder' => 'Status']) }}
-            {!! $errors->first('status', '<div class="invalid-feedback">:message</div>') !!}
+            <select name="status" id="status" class="form-control">
+
+
+                <option>Seleccionar status</option>
+
+
+                <option value="{{'pendiente'}}">{{"pendiente"}}</option>
+                <option value="{{'pagado'}}">{{"pagado"}}</option>
+
+
+            </select>
         </div>
 
     </div>
-   
+
     <div class="box-footer mt20">
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
-   
+
 </div>

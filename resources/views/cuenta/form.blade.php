@@ -1,12 +1,12 @@
 <div class="box box-info padding-1">
     <div class="box-body">
-        
+
         <div class="form-group">
             {{ Form::label('usuario') }}
             {{ Form::text('user_id', $cuenta->user_id, ['class' => 'form-control' . ($errors->has('user_id') ? ' is-invalid' : ''), 'placeholder' => 'User Id']) }}
             {!! $errors->first('user_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
-       <!--  <div class="form-group">
+        <!--  <div class="form-group">
             {{ Form::label('provedor_id') }}
             {{ Form::text('provedor_id', $cuenta->provedor_id, ['class' => 'form-control' . ($errors->has('provedor_id') ? ' is-invalid' : ''), 'placeholder' => 'Provedor Id']) }}
             {!! $errors->first('provedor_id', '<div class="invalid-feedback">:message</div>') !!}
@@ -61,11 +61,7 @@
             {{ Form::text('observaciones', $cuenta->observaciones, ['class' => 'form-control' . ($errors->has('observaciones') ? ' is-invalid' : ''), 'placeholder' => 'Observaciones']) }}
             {!! $errors->first('observaciones', '<div class="invalid-feedback">:message</div>') !!}
         </div>
-        <div class="form-group">
-            {{ Form::label('status') }}
-            {{ Form::text('status', $cuenta->status, ['class' => 'form-control' . ($errors->has('status') ? ' is-invalid' : ''), 'placeholder' => 'Status']) }}
-            {!! $errors->first('status', '<div class="invalid-feedback">:message</div>') !!}
-        </div>
+
 
     </div>
     <div class="box-footer mt20">

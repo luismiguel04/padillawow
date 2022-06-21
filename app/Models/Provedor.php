@@ -23,12 +23,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class Provedor extends Model
 {
-    
+
     static $rules = [
-		
-		'nombre' => 'required',
-		'direccion' => 'required',
-		
+
+        'nombre' => 'required',
+        'direccion' => 'required',
+
     ];
 
     protected $perPage = 20;
@@ -38,7 +38,7 @@ class Provedor extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id','nombre','direccion','status'];
+    protected $fillable = ['user_id', 'nombre', 'direccion'];
 
 
     /**
@@ -48,7 +48,7 @@ class Provedor extends Model
     {
         return $this->hasMany('App\Models\Cuenta');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -56,12 +56,12 @@ class Provedor extends Model
     {
         return $this->hasMany('App\Models\Pago', 'provedor_id', 'id');
     }
-    public function user(){
-        return $this->belongsTo('App\Models\User','user_id');
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User', 'user_id');
     }
     public function subcateegorias()
     {
         return $this->hasMany('App\Cuenta');
     }
-
 }

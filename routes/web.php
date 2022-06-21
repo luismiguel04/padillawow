@@ -40,5 +40,5 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::post('/cuentas', [App\Http\Controllers\PagoController::class,'cuentas']);
-Route::get('/pruebas',[App\Http\Controllers\PagoController::class, 'index']);
+Route::post('/rcuentas', [App\Http\Controllers\PagoController::class, 'cuentas']);
+Route::get('/creates', [App\Http\Controllers\PagoController::class, 'create']);

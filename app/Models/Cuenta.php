@@ -30,20 +30,20 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Cuenta extends Model
 {
-    
+
     static $rules = [
-		'user_id' => 'required',
-		'provedor_id' => 'required',
-		'banco' => 'required',
-		'sucursal' => 'required',
-		'direccion' => 'required',
-		'cuenta' => 'required',
-		'clave' => 'required',
-		'swifts' => 'required',
-		'aba' => 'required',
-		'moneda' => 'required',
-		'observaciones' => 'required',
-		'status' => 'required',
+        'user_id' => 'required',
+        'provedor_id' => 'required',
+        'banco' => 'required',
+        'sucursal' => 'required',
+        'direccion' => 'required',
+        'cuenta' => 'required',
+        'clave' => 'required',
+        'swifts' => 'required',
+        'aba' => 'required',
+        'moneda' => 'required',
+        'observaciones' => 'required',
+
     ];
 
     protected $perPage = 20;
@@ -53,7 +53,7 @@ class Cuenta extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id','provedor_id','banco','sucursal','direccion','cuenta','clave','swifts','aba','moneda','observaciones','status'];
+    protected $fillable = ['user_id', 'provedor_id', 'banco', 'sucursal', 'direccion', 'cuenta', 'clave', 'swifts', 'aba', 'moneda', 'observaciones'];
 
 
     /**
@@ -63,7 +63,7 @@ class Cuenta extends Model
     {
         return $this->hasMany('App\Models\Pago', 'cuenta_id', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -79,6 +79,4 @@ class Cuenta extends Model
     {
         return $this->belongsTo('App\Provedor');
     }
-    
-
 }

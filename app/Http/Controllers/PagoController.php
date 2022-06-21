@@ -18,27 +18,27 @@ class PagoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-   /*  public function index()
+    public function index()
     {
         $pagos = Pago::paginate();
 
         return view('pago.index', compact('pagos'))
             ->with('i', (request()->input('page', 1) - 1) * $pagos->perPage());
-    } */
+    }
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function create()
     {
         $pago = new Pago();
-        $user=\Auth::user();
+        $user = \Auth::user();
         $pago->user_id = $user->id;
-       // $provedores =Provedor::pluck('nombre','id' );
-       $provedores =Provedor::all();
-        return view('pago.create', compact('pago','provedores'));
+        // $provedores =Provedor::pluck('nombre','id' );
+        $provedores = Provedor::all();
+        return view('pago.create', compact('pago', 'provedores'));
     }
 
     /**
@@ -79,8 +79,8 @@ class PagoController extends Controller
     public function edit($id)
     {
         $pago = Pago::find($id);
-
-        return view('pago.edit', compact('pago'));
+        $provedores = Provedor::all();
+        return view('pago.edit', compact('pago', 'provedores'));
     }
 
     /**
@@ -113,25 +113,22 @@ class PagoController extends Controller
             ->with('success', 'Pago deleted successfully');
     }
 
-    public function cuentas(Request $request){
-        if(isset($request->texto)){
+    public function cuentas(Request $request)
+    {
+        if (isset($request->texto)) {
             $cuentas = Cuenta::whereprovedor_id($request->texto)->get();
             return response()->json(
                 [
                     'lista' => $cuentas,
                     'success' => true
                 ]
-                );
-        }else{
+            );
+        } else {
             return response()->json(
                 [
                     'success' => false
                 ]
-                );
-
+            );
         }
-
     }
-    
-    
 }
