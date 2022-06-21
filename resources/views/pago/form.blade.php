@@ -15,7 +15,29 @@
             {{ Form::label('cuenta_id') }}
             {{ Form::text('cuenta_id', $pago->cuenta_id, ['class' => 'form-control' . ($errors->has('cuenta_id') ? ' is-invalid' : ''), 'placeholder' => 'Cuenta Id']) }}
             {!! $errors->first('cuenta_id', '<div class="invalid-feedback">:message</div>') !!}
+        <br>
         </div>
+        <div class="form-group">
+        <select name="_categoria" id="_categoria">
+            @foreach ($provedores as $item)
+            <option value="{{$item->id}}">{{$item->nombre}}</option>
+            @endforeach
+        </select>
+      
+          
+        </div>
+
+        <div class="form-group">
+            <br>
+            {{ Form::label('cuenta_id') }}
+            <br>
+            <select name="_subcategoria" id="_subcategoria" class=>from-control></select>
+            <br>
+            <br>
+          
+        </div>
+
+
         <div class="form-group">
             {{ Form::label('fecha') }}
             {{ Form::text('fecha', $pago->fecha, ['class' => 'form-control' . ($errors->has('fecha') ? ' is-invalid' : ''), 'placeholder' => 'Fecha']) }}
@@ -73,7 +95,9 @@
         </div>
 
     </div>
+   
     <div class="box-footer mt20">
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
+   
 </div>

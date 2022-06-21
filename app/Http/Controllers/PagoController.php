@@ -18,25 +18,26 @@ class PagoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+   /*  public function index()
     {
         $pagos = Pago::paginate();
 
         return view('pago.index', compact('pagos'))
             ->with('i', (request()->input('page', 1) - 1) * $pagos->perPage());
-    }
+    } */
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function index()
     {
         $pago = new Pago();
         $user=\Auth::user();
         $pago->user_id = $user->id;
-        $provedores =Provedor::pluck('nombre','id' );
+       // $provedores =Provedor::pluck('nombre','id' );
+       $provedores =Provedor::all();
         return view('pago.create', compact('pago','provedores'));
     }
 
@@ -111,4 +112,26 @@ class PagoController extends Controller
         return redirect()->route('pagos.index')
             ->with('success', 'Pago deleted successfully');
     }
+
+    public function cuentas(Request $request){
+        if(isset($request->texto)){
+            $cuentas = Cuenta::whereprovedor_id($request->texto)->get();
+            return response()->json(
+                [
+                    'lista' => $cuentas,
+                    'success' => true
+                ]
+                );
+        }else{
+            return response()->json(
+                [
+                    'success' => false
+                ]
+                );
+
+        }
+
+    }
+    
+    
 }

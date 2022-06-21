@@ -38,3 +38,7 @@ Route::resource('pagos', App\Http\Controllers\PagoController::class)->middleware
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::post('/cuentas', [App\Http\Controllers\PagoController::class,'cuentas']);
+Route::get('/pruebas',[App\Http\Controllers\PagoController::class, 'index']);

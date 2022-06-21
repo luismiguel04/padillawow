@@ -46,7 +46,7 @@ class Provedor extends Model
      */
     public function cuentas()
     {
-        return $this->hasMany('App\Models\Cuenta', 'provedor_id', 'id');
+        return $this->hasMany('App\Models\Cuenta');
     }
     
     /**
@@ -58,6 +58,10 @@ class Provedor extends Model
     }
     public function user(){
         return $this->belongsTo('App\Models\User','user_id');
+    }
+    public function subcateegorias()
+    {
+        return $this->hasMany('App\Cuenta');
     }
 
 }

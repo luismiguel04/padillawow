@@ -27,4 +27,29 @@
             </div>
         </div>
     </section>
+    <script>
+        const csrfToken = document.head.querySelector("[name~=csrf-token][content]").content;
+    document.getElementById('_categoria').addEventListener('change',(e)=>{
+        fetch('cuentas',{
+            method : 'POST',
+            body: JSON.stringify({texto : e.target.value}),
+            headers:{
+                'Content-Type': 'application/json',
+                "X-CSRF-Token": csrfToken
+            }
+        }).then(response =>{
+            return response.json()
+        }).then( data =>{
+            var opciones ="<option value=''>Elegir</option>";
+            for (let i in data.lista) {
+               opciones+= '<option value="'+data.lista[i].id+'">'+data.lista[i].cuenta+data.lista[i].observaciones+'</option>';
+            }
+            document.getElementById("_subcategoria").innerHTML = opciones;
+        }).catch(error =>console.error(error));
+    })  
+
+
+
+</script>
 @endsection
+

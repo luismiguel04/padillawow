@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->unsigned();
             $table->string('nombre',120);
             $table->string('direccion',1000);
-            $table->tinyInteger('status');
+            $table->tinyInteger("status");
             $table->foreign('user_id')->references('id')->on('users')->onDelete("cascade");
             $table->timestamps();
         });
