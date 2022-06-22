@@ -27,10 +27,12 @@ return new class extends Migration
             $table->string('bl', 20);
             $table->string('contenedor', 20);
             $table->string('factura', 15);
-            $table->double('cantidad', 8, 2);
+            $table->double('cantidad', 16, 2);
             $table->string('moneda', 10);
             $table->string('obeservacion', 100);
-            $table->enum("status", ["pendiente", "pagado"]);
+            $table->string('obeservacionderev', 100);
+
+            $table->enum("status", ["pendiente", "revisado", "pagado", "eliminado"]);
             $table->foreign('provedor_id')->references('id')->on('provedors')->onDelete("cascade");
             $table->foreign('cuenta_id')->references('id')->on('cuentas')->onDelete("cascade");
             $table->timestamps();

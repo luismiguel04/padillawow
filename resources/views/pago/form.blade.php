@@ -29,31 +29,31 @@
         <div class="form-group">
             {{ Form::label('provedor') }}
             <select name="provedor_id" id="provedor_id" class="form-control">
-
-
                 <option>Seleccionar provedor</option>
-
                 @foreach ($provedores as $item)
-                <option value=" {{$item->id}}">{{$item->nombre}}</option>
+                <option value="{{ $item->id }}" @if($pago->provedor_id=== $item->id) " selected='selected'
+                    @endif>{{ $item->nombre }}
+                </option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
+            {{ Form::label('cuenta') }}
+            <br>
+            <select name="cuenta_id" id="cuenta_id" class="from-control">
+                <option>Seleccionar cuenta</option>
+                @foreach ($cuentas as $item)
+                <option value="{{ $item->id }}" @if($pago->cuenta_id=== $item->id) " selected='selected'
+                    @endif>{{ $item->cuenta}}{{" Observaciones: "}}{{ $item->observaciones}}
+                </option>
                 @endforeach
 
             </select>
+            <br>
 
 
         </div>
 
-        <div class="form-group">
-            <br>
-            {{ Form::label('cuenta') }}
-            <br>
-            <select name="cuenta_id" id="cuenta_id" class=>from-control>
-                <option value="4"> {{"selecionar"}}</option>
-
-            </select>
-            <br>
-            <br>
-
-        </div>
 
 
         <div class="form-group">
@@ -115,15 +115,22 @@
 
 
                 <option value="{{'pendiente'}}">{{"pendiente"}}</option>
+                <option value="{{'revisado'}}">{{"revisado"}}</option>
                 <option value="{{'pagado'}}">{{"pagado"}}</option>
 
 
             </select>
         </div>
+        <div class="form-group">
+            {{ Form::label('obeservaciones de revisión') }}
+            {{ Form::text('obeservacionderev', $pago->obeservacionderev, ['class' => 'form-control' . ($errors->has('obeservacionderev') ? ' is-invalid' : ''), 'placeholder' => 'obeservaciones de la revisión se llena por el personal de administración']) }}
+            {!! $errors->first('obeservacionderev', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
 
     </div>
 
     <div class="box-footer mt20">
+        <br>
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 

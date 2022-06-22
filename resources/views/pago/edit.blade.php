@@ -5,7 +5,7 @@ Update Pago
 @endsection
 
 @section('content')
-<section class="content container-fluid">
+<section class="content container-fluid" id="actualizar">
     <div class="row">
         <div class="col-md-12">
 
@@ -31,7 +31,8 @@ Update Pago
 </section>
 
 <script>
-const csrfToken = document.head.querySelector("[name~=csrf-token][content]").content; 
+const csrfToken = document.head.querySelector("[name~=csrf-token][content]").content;
+
 document.getElementById('provedor_id').addEventListener('change', (e) => {
     fetch('cuentas', {
         method: 'POST',

@@ -20,9 +20,16 @@ class PagoController extends Controller
      */
     public function index()
     {
-        $pagos = Pago::paginate();
 
-        return view('pago.index', compact('pagos'))
+        $pagos = Pago::where('status', '<', 3)->paginate();
+
+
+
+        $pagosp = Pago::where('status', '=', 3)->paginate();
+
+        $pagosc = Pago::where('status', '=', 4)->paginate();
+
+        return view('pago.index', compact('pagos', 'pagosp', 'pagosc'))
             ->with('i', (request()->input('page', 1) - 1) * $pagos->perPage());
     }
 
@@ -54,7 +61,7 @@ class PagoController extends Controller
         $pago = Pago::create($request->all());
 
         return redirect()->route('pagos.index')
-            ->with('success', 'Pago created successfully.');
+            ->with('success', 'Pago creado exitosamente.');
     }
 
     /**
@@ -80,7 +87,8 @@ class PagoController extends Controller
     {
         $pago = Pago::find($id);
         $provedores = Provedor::all();
-        return view('pago.edit', compact('pago', 'provedores'));
+        $cuentas = Cuenta::all();
+        return view('pago.edit', compact('pago', 'provedores', 'cuentas'));
     }
 
     /**
@@ -97,7 +105,7 @@ class PagoController extends Controller
         $pago->update($request->all());
 
         return redirect()->route('pagos.index')
-            ->with('success', 'Pago updated successfully');
+            ->with('success', 'Pago actualizado exitosamente');
     }
 
     /**
@@ -107,10 +115,17 @@ class PagoController extends Controller
      */
     public function destroy($id)
     {
-        $pago = Pago::find($id)->delete();
-
-        return redirect()->route('pagos.index')
-            ->with('success', 'Pago deleted successfully');
+        $pago = Pago::find($id);
+        if ($pago) {
+            $pago->status = 3;
+            $pago->update();
+            return redirect()->route('pagos.index')
+                ->with('success', 'Pago eliminado exitosamente');
+        } else {
+            return redirect()->route('pagos.index')->with(array(
+                "message" => "El video que trata de eliminar no existe"
+            ));
+        }
     }
 
     public function cuentas(Request $request)

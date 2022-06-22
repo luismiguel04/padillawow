@@ -57,7 +57,7 @@ class Pago extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id', 'provedor_id', 'cuenta_id', 'fecha', 'referencia', 'cliente', 'concepto', 'bl', 'contenedor', 'factura', 'cantidad', 'moneda', 'obeservacion', 'status'];
+    protected $fillable = ['user_id', 'provedor_id', 'cuenta_id', 'fecha', 'referencia', 'cliente', 'concepto', 'bl', 'contenedor', 'factura', 'cantidad', 'moneda', 'obeservacion', 'obeservacionderev', 'status'];
 
 
     /**
