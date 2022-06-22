@@ -131,4 +131,23 @@ class PagoController extends Controller
             );
         }
     }
+
+    public function cuentass(Request $request)
+    {
+        if (isset($request->texto)) {
+            $cuentas = Cuenta::whereprovedor_id($request->texto)->get();
+            return response()->json(
+                [
+                    'lista' => $cuentas,
+                    'success' => true
+                ]
+            );
+        } else {
+            return response()->json(
+                [
+                    'success' => false
+                ]
+            );
+        }
+    }
 }

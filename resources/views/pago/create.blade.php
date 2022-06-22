@@ -20,7 +20,7 @@ Create Pago
                         @csrf
 
                         @include('pago.form')
-
+ 
                     </form>
                 </div>
             </div>

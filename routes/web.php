@@ -40,5 +40,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::post('/rcuentas', [App\Http\Controllers\PagoController::class, 'cuentas']);
-Route::get('/creates', [App\Http\Controllers\PagoController::class, 'create']);
+Route::post('/rcuentas', [App\Http\Controllers\PagoController::class, 'cuentas'])->middleware('auth');
+Route::post('/edits/cuentas', [App\Http\Controllers\PagoController::class, 'cuentas'])->middleware('auth');
+Route::get('/creates', [App\Http\Controllers\PagoController::class, 'create'])->middleware('auth');
+Route::get('/edits/{pago_id}', [App\Http\Controllers\PagoController::class, 'edit'])->middleware('auth');

@@ -80,7 +80,7 @@ Pago
                                                 href="{{ route('pagos.show',$pago->id) }}"><i
                                                     class="fa fa-fw fa-eye"></i> Mostrar</a>
                                             <a class="btn btn-sm btn-success"
-                                                href="{{ route('pagos.edit',$pago->id) }}"><i
+                                                href="edits/{{$pago->id}}"><i
                                                     class="fa fa-fw fa-edit"></i> Editar</a>
                                             @csrf
                                             @method('DELETE')
