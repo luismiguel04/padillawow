@@ -45,7 +45,8 @@ class PagoController extends Controller
         $pago->user_id = $user->id;
         // $provedores =Provedor::pluck('nombre','id' );
         $provedores = Provedor::all();
-        return view('pago.create', compact('pago', 'provedores'));
+        $cuentas = Cuenta::all();
+        return view('pago.create', compact('pago', 'provedores','cuentas'));
     }
 
     /**

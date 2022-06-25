@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('bl', 20);
             $table->string('contenedor', 20);
             $table->string('factura', 15);
+            $table->string( 'pago_path');
             $table->double('cantidad', 16, 2);
             $table->string('moneda', 10);
             $table->string('obeservacion', 100);

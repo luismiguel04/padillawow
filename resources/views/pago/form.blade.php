@@ -91,6 +91,7 @@
             {{ Form::text('factura', $pago->factura, ['class' => 'form-control' . ($errors->has('factura') ? ' is-invalid' : ''), 'placeholder' => 'Factura']) }}
             {!! $errors->first('factura', '<div class="invalid-feedback">:message</div>') !!}
         </div>
+
         <div class="form-group">
             {{ Form::label('cantidad') }}
             {{ Form::text('cantidad', $pago->cantidad, ['class' => 'form-control' . ($errors->has('cantidad') ? ' is-invalid' : ''), 'placeholder' => 'Cantidad']) }}
@@ -100,6 +101,11 @@
             {{ Form::label('moneda') }}
             {{ Form::text('moneda', $pago->moneda, ['class' => 'form-control' . ($errors->has('moneda') ? ' is-invalid' : ''), 'placeholder' => 'Moneda']) }}
             {!! $errors->first('moneda', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+        <div class="form-group">
+            {{ Form::label('sube el pago') }}
+            {{ Form::text('pago_path', $pago->pago_path, ['class' => 'form-control' . ($errors->has('pago_path') ? ' is-invalid' : ''), 'placeholder' => 'seleciona el archivo del pago']) }}
+            {!! $errors->first('pago_path', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
             {{ Form::label('obeservacion') }}
