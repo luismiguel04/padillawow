@@ -46,6 +46,7 @@ Pagos pendientes
                                     <th>Bl</th>
                                     <th>Contenedor</th>
                                     <th>Factura</th>
+                                    <th>Factura Path</th>
                                     <th>Cantidad</th>
                                     <th>Moneda</th>
                                     <th>Obeservacion</th>
@@ -71,6 +72,7 @@ Pagos pendientes
                                     <td>{{ $pago->bl }}</td>
                                     <td>{{ $pago->contenedor }}</td>
                                     <td>{{ $pago->factura }}</td>
+                                    <td><a target="_blank" href="{{('vpagos/'). $pago->pago_path}}">PDF</a></td>
                                     <td><strong>$</strong>{{ $pago->cantidad }}</td>
                                     <td>{{ $pago->moneda }}</td>
                                     <td>{{ $pago->obeservacion }}</td>

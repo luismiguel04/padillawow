@@ -44,3 +44,8 @@ Route::post('/rcuentas', [App\Http\Controllers\PagoController::class, 'cuentas']
 Route::post('/edits/cuentas', [App\Http\Controllers\PagoController::class, 'cuentas'])->middleware('auth');
 Route::get('/creates', [App\Http\Controllers\PagoController::class, 'create'])->middleware('auth');
 Route::get('/edits/{pago_id}', [App\Http\Controllers\PagoController::class, 'edit'])->middleware('auth');
+
+Route::get('/pago-file/{filename}', array(
+    'as'=> 'filePago',
+    'uses' => 'App\Http\Controllers\PagoController@getPago'
+));

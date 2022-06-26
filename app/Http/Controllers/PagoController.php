@@ -6,6 +6,8 @@ use App\Models\Pago;
 use App\Models\Cuenta;
 use App\Models\Provedor;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+
 
 /**
  * Class PagoController
@@ -46,6 +48,7 @@ class PagoController extends Controller
         // $provedores =Provedor::pluck('nombre','id' );
         $provedores = Provedor::all();
         $cuentas = Cuenta::all();
+       
         return view('pago.create', compact('pago', 'provedores','cuentas'));
     }
 
@@ -58,8 +61,39 @@ class PagoController extends Controller
     public function store(Request $request)
     {
         request()->validate(Pago::$rules);
-
+        //$pago = new Pago();
+        
+        
+        
         $pago = Pago::create($request->all());
+        //$pago = Pago::create ($request=["pago_path", "user_id","provedor_id",'cuenta_id','fecha','referencia']);
+       
+
+     /*    $pago_file = $request->file('pago_path');
+       if($pago){
+            $pago_path =$pago->pago_path;
+            \Storage::disk('pagos')->put($pago_path->getClientOriginalName(),
+                \File::get($pago_path));
+            $pago->pago_path = $pago_path;
+        }  */
+
+        $pago_file = $request->file('pago_path');
+            $pagoname =$pago->pago_path->getClientOriginalName();
+             
+           
+                $rutafile=time().$pagoname;
+                \Storage::disk('pagos')->put($rutafile,
+                \File::get($pago_file));
+                $pago->pago_path =$rutafile;
+            
+        
+            
+            
+
+
+        $pago->save();
+     
+        
 
         return redirect()->route('pagos.index')
             ->with('success', 'Pago creado exitosamente.');
@@ -166,4 +200,9 @@ class PagoController extends Controller
             );
         }
     }
+
+    public function getPago($filename){
+        $file = \Storage::disk('pagos')->get($filename);
+        return new Response($file, 200);
+     }
 }

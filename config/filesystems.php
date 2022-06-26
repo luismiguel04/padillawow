@@ -46,7 +46,7 @@ return [
         'pagos' => [
             'driver' => 'local',
             'root' => storage_path('app/pagos'),
-            'url' => env('APP_URL').'/storage',
+            'url' => env('APP_URLS').'/vpagos',
             'visibility' => 'public',
             'throw' => false,
         ],
@@ -76,8 +76,19 @@ return [
     |
     */
 
+   
+
     'links' => [
         public_path('storage') => storage_path('app/public'),
     ],
+
+    'links' => [
+        public_path('vpagos') => storage_path('vpagos'),
+    ],
+
+    
+   
+   
+    
 
 ];
