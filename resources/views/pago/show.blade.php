@@ -83,6 +83,8 @@
                         <strong>obeservacion de revisión:</strong>
                         {{ $pago->obeservacionderev }}
                     </div>
+                    <iframe src="{{('http://localhost/padillawow/public/vpagos/'). $pago->pago_path}}" width="100%"
+                        height="800px">
 
                 </div>
             </div>

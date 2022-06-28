@@ -72,7 +72,8 @@ Cuenta
                                     <td>{{ $cuenta->status }}</td>
 
                                     <td>
-                                        <form action="{{ route('cuentas.destroy',$cuenta->id) }}" method="POST">
+                                        <form action="{{ route('cuentas.destroy',$cuenta->id) }}" method="POST"
+                                            class="formEliminar">
                                             <a class="btn btn-sm btn-primary "
                                                 href="{{ route('cuentas.show',$cuenta->id) }}"><i
                                                     class="fa fa-fw fa-eye"></i> Mostrar</a>
@@ -95,5 +96,38 @@ Cuenta
             {!! $cuentas->links() !!}
         </div>
     </div>
+    <script>
+    (function() {
+        'use strict'
+        var forms = document.querySelectorAll('.formEliminar')
+
+        Array.prototype.slice.call(forms)
+            .forEach(function(form) {
+                form.addEventListener('submit', function(event) {
+
+                    event.preventDefault()
+                    event.stopPropagation()
+                    Swal.fire({
+                        title: 'Eliminar cuenta',
+                        text: "Esta seguro de eliminar el la cuenta del provedor!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Si, borrar cuenta!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            this.submit();
+                            Swal.fire(
+                                'Borrado!',
+                                'La cuenta ha sido borrado.',
+                                'exitosamente'
+                            )
+                        }
+                    })
+                }, false)
+            })
+    })()
+    </script>
 </div>
 @endsection

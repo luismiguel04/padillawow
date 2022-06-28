@@ -104,8 +104,9 @@
         </div>
         <div class="form-group">
             {{ Form::label('sube el pago') }}
-            {{ Form::file('pago_path', $pago->pago_path, ['class' => 'form-control' . ($errors->has('pago_path') ? ' is-invalid' : ''), 'placeholder' => 'seleciona el archivo del pago']) }}
-            {!! $errors->first('pago_path', '<div class="invalid-feedback">:message</div>') !!}
+
+            <input type="file" name="pago_path" id="pago_path" class="hidden">
+
         </div>
         <div class="form-group">
             {{ Form::label('obeservacion') }}

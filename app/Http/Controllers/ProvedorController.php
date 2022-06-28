@@ -32,9 +32,9 @@ class ProvedorController extends Controller
      */
     public function create()
     {
-       
-        $provedor= new provedor();
-        $user=\Auth::user();
+
+        $provedor = new provedor();
+        $user = \Auth::user();
         $provedor->user_id = $user->id;
         return view('provedor.create', compact('provedor'));
     }
@@ -49,17 +49,17 @@ class ProvedorController extends Controller
     {
         request()->validate(Provedor::$rules);
 
-        
-        $provedor= new provedor();
-        
-      /*   $provedor->nombre =$request->input('nombre');
+
+        $provedor = new provedor();
+
+        /*   $provedor->nombre =$request->input('nombre');
         $provedor->direccion =$request->input('direccion'); */
-/* 
+        /* 
         $provedor ->save(); */
         $provedor = Provedor::create($request->all());
         return redirect()->route('provedors.index')
-             ->with(array(
-                'message'=>'El provedor se ha creado correctamente'
+            ->with(array(
+                'message' => 'El provedor se ha creado correctamente'
             ));
     }
 
@@ -113,9 +113,17 @@ class ProvedorController extends Controller
      */
     public function destroy($id)
     {
-        $provedor = Provedor::find($id)->delete();
+        $provedor = Provedor::find($id);
 
-        return redirect()->route('provedors.index')
-            ->with('success', 'Provedor eliminado exitosamente');
+        if ($provedor) {
+            $provedor->status = 'inactivo';
+            $provedor->update();
+            return redirect()->route('provedors.index')
+                ->with('success', 'provedor eliminado exitosamente');
+        } else {
+            return redirect()->route('provedors.index')->with(array(
+                "message" => "El provedor que trata de eliminar no existe"
+            ));
+        }
     }
 }

@@ -34,10 +34,10 @@ class CuentaController extends Controller
     public function create()
     {
         $cuenta = new Cuenta();
-        $user=\Auth::user();
+        $user = \Auth::user();
         $cuenta->user_id = $user->id;
-        $provedores =Provedor::pluck('nombre','id');
-        return view('cuenta.create', compact('cuenta','provedores'));
+        $provedores = Provedor::pluck('nombre', 'id');
+        return view('cuenta.create', compact('cuenta', 'provedores'));
     }
 
     /**
@@ -78,9 +78,9 @@ class CuentaController extends Controller
     public function edit($id)
     {
         $cuenta = Cuenta::find($id);
-        $provedores =Provedor::pluck('nombre','id');
+        $provedores = Provedor::pluck('nombre', 'id');
 
-        return view('cuenta.edit', compact('cuenta','provedores'));
+        return view('cuenta.edit', compact('cuenta', 'provedores'));
     }
 
     /**
@@ -107,9 +107,19 @@ class CuentaController extends Controller
      */
     public function destroy($id)
     {
-        $cuenta = Cuenta::find($id)->delete();
+        $cuenta = Cuenta::find($id);
 
-        return redirect()->route('cuentas.index')
-            ->with('success', 'Cuenta elimiada exitosamente');
+
+
+        if ($cuenta) {
+            $cuenta->status = 'inactiva';
+            $cuenta->update();
+            return redirect()->route('cuentas.index')
+                ->with('success', 'Cuenta elimiada exitosamente');
+        } else {
+            return redirect()->route('cuentas.index')->with(array(
+                "message" => "La cuenta que trata de eliminar no existe"
+            ));
+        }
     }
 }

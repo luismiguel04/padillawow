@@ -38,7 +38,7 @@ class Provedor extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id', 'nombre', 'direccion'];
+    protected $fillable = ['user_id', 'nombre', 'direccion', 'status'];
 
 
     /**
