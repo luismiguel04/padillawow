@@ -126,4 +126,9 @@ class ProvedorController extends Controller
             ));
         }
     }
+
+    public function imprimir(){
+        $pdf = \PDF::loadView('ejemplo');
+        return $pdf->download('ejemplo.pdf');
+   }
 }

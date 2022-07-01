@@ -49,3 +49,5 @@ Route::get('/pago-file/{filename}', array(
     'as'=> 'filePago',
     'uses' => 'App\Http\Controllers\PagoController@getPago'
 ));
+
+Route::name('print')->get('/imprimir', 'App\Http\Controllers\ProvedorController@imprimir');
